@@ -1,7 +1,5 @@
-from flask_sqlalchemy import SQLAlchemy
+from db import db
 from datetime import datetime
-
-db = SQLAlchemy()
 
 # Tabela de associação muitos-para-muitos
 pedido_produto = db.Table('pedido_produto',
@@ -23,7 +21,7 @@ class Produto(db.Model):
     data_criacao = db.Column(db.DateTime, default=datetime.utcnow)
     ativo = db.Column(db.Boolean, default=True)
 
-    # Relacionamento com pedidos
+    # Relacionamento com pedidos (importação tardia)
     pedidos = db.relationship('Pedido', secondary=pedido_produto, back_populates='produtos')
 
     def __init__(self, nome, quantidade, preco, descricao=None):

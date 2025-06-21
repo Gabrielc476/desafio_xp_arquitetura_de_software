@@ -1,4 +1,5 @@
-from models.produto import Produto, db
+from models.produto import Produto
+from db import db
 from typing import List, Optional
 
 

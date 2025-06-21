@@ -1,4 +1,5 @@
-from models.pedido import Pedido, StatusPedido, db
+from models.pedido import Pedido, StatusPedido
+from db import db
 from datetime import datetime
 from typing import List, Optional
 

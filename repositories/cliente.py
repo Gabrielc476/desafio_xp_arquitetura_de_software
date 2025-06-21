@@ -1,4 +1,5 @@
-from models.cliente import Cliente, db
+from models.cliente import Cliente
+from db import db
 from typing import List, Optional
 
 

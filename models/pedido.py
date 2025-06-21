@@ -1,9 +1,7 @@
-from flask_sqlalchemy import SQLAlchemy
+from db import db
 from datetime import datetime
 from enum import Enum
 from models.produto import pedido_produto
-
-db = SQLAlchemy()
 
 
 class StatusPedido(Enum):
@@ -25,7 +23,7 @@ class Pedido(db.Model):
     status = db.Column(db.Enum(StatusPedido), default=StatusPedido.PENDENTE, nullable=False)
     observacoes = db.Column(db.Text)
 
-    # Relacionamento com produtos
+    # Relacionamento com produtos (importação tardia)
     produtos = db.relationship('Produto', secondary=pedido_produto, back_populates='pedidos')
 
     def __init__(self, cliente_id, observacoes=None):

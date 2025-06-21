@@ -1,8 +1,6 @@
-from flask_sqlalchemy import SQLAlchemy
+from db import db
 from datetime import datetime
 from werkzeug.security import generate_password_hash, check_password_hash
-
-db = SQLAlchemy()
 
 
 class Cliente(db.Model):
@@ -14,7 +12,7 @@ class Cliente(db.Model):
     senha = db.Column(db.String(255), nullable=False)
     data_criacao = db.Column(db.DateTime, default=datetime.utcnow)
 
-    # Relacionamento com pedidos
+    # Relacionamento com pedidos (importação tardia)
     pedidos = db.relationship('Pedido', backref='cliente', lazy=True, cascade='all, delete-orphan')
 
     def __init__(self, nome, email, senha):
